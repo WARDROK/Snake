@@ -15,6 +15,7 @@ set(SOURCES
     src/StateMan.cpp
     src/AssetMan.cpp
     src/Game.cpp
+    src/MainMenu.cpp
 )
 
 add_executable(main ${SOURCES})
