@@ -1,7 +1,7 @@
 ![Snake Game](assets/Game.png)
 # Snake Game
 
-This is a simple Snake game built using SFML (Simple and Fast Multimedia Library).
+This is a Snake game built using SFML (Simple and Fast Multimedia Library). The game is powered by its own state-based engine.
 
 ## Table of Contents
 
