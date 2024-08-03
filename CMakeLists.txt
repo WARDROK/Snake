@@ -19,6 +19,7 @@ file(GLOB SOURCES
     src/MainMenu.cpp
     src/Snake.cpp
     src/StateMan.cpp
+    src/PauseGame.cpp
 )
 
 add_executable(main ${SOURCES})

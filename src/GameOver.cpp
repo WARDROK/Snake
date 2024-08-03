@@ -6,7 +6,6 @@ GameOver::GameOver(std::shared_ptr<Context>& context)
     : m_context(context), m_isRetryButtonSelected(true), m_isRetryButtonPressed(false),
       m_isExitButtonSelected(false), m_isExitButtonPressed(false)
 {
-
 }
 
 GameOver::~GameOver()
@@ -85,10 +84,8 @@ void GameOver::ProcessInput()
             default:
                 break;
             }
-        }
-            
+        }   
     }
-
 }
 
 void GameOver::Update(sf::Time deltaTime)
