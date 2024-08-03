@@ -45,10 +45,12 @@ You can also copy the main.exe file to the project folder (Snake) and run it via
 cp ./build/bin/Debug/main.exe ./
 ./main.exe
 ```
+Another option is to use ReadyToPlay folder with prepared game.
 
 ## Project Structure
 ```
 Snake/
+├── ReadyToPlay/ // Folder with prepared game
 ├── assets/
 │   ├── fonts/
 │   ├── textures/
