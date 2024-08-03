@@ -13,6 +13,7 @@ class GameOver : public Engine::State
 private:
     std::shared_ptr<Context> m_context;
     sf::Text m_gameOverTitle;
+    sf::Text m_scoreText;
     sf::Text m_retryButton;
     sf::Text m_exitButton;
 

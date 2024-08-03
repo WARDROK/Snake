@@ -13,17 +13,13 @@ PauseGame::~PauseGame()
 
 void PauseGame::Init()
 {
-    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/Pacifico-Regular.ttf");
-
-
     // Title
     m_pauseTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_pauseTitle.setString("Paused");
     m_pauseTitle.setCharacterSize(60*SCALE);
     m_pauseTitle.setOrigin(m_pauseTitle.getLocalBounds().width / 2,
                           m_pauseTitle.getLocalBounds().height / 2);
-    m_pauseTitle.setPosition(m_context->m_window->getSize().x / 2,
-                            m_context->m_window->getSize().y / 2);
+    m_pauseTitle.setPosition(WIDTH / 2, HEIGHT / 2 - 16*SCALE);
 }
 
 void PauseGame::ProcessInput()

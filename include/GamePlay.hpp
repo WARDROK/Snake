@@ -28,6 +28,8 @@ private:
     sf::Time m_elapsedTime;
     bool m_isNewDirectionProcessing = false;
 
+    bool m_isPaused;
+
 public:
     GamePlay(std::shared_ptr<Context>& context);
     ~GamePlay();

@@ -25,6 +25,7 @@ struct Context
     std::unique_ptr<Engine::AssetMan> m_assets;
     std::unique_ptr<Engine::StateMan> m_states;
     std::unique_ptr<sf::RenderWindow> m_window;
+    int m_score;
 
     Context()
     {

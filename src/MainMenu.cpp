@@ -16,13 +16,10 @@ MainMenu::~MainMenu()
 
 void MainMenu::Init()
 {
-    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/Pacifico-Regular.ttf");
-
-
     // Title
     m_gameTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_gameTitle.setString("Snake Game");
-    m_gameTitle.setCharacterSize(60*SCALE);
+    m_gameTitle.setCharacterSize(45*SCALE);
     m_gameTitle.setOrigin(m_gameTitle.getLocalBounds().width / 2,
                           m_gameTitle.getLocalBounds().height / 2);
     m_gameTitle.setPosition(m_context->m_window->getSize().x / 2,
@@ -60,6 +57,7 @@ void MainMenu::ProcessInput()
         {
             switch (event.key.code)
             {
+            case sf::Keyboard::W:
             case sf::Keyboard::Up:
                 if(!m_isPlayButtonSelected)
                 {
@@ -67,6 +65,7 @@ void MainMenu::ProcessInput()
                     m_isExitButtonSelected = false;
                 }
                 break;
+            case sf::Keyboard::S:
             case sf::Keyboard::Down:
                 if(!m_isExitButtonSelected)
                 {

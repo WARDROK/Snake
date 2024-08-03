@@ -9,8 +9,9 @@ GamePlay::GamePlay(std::shared_ptr<Context>& context)
     : m_context(context),
       m_snakeDirection({16.f*SCALE, 0.f}),
       m_elapsedTime(sf::Time::Zero),
-      m_score(0)
+      m_isPaused(false)
 {
+    m_context->m_score = 0;
     srand(time(nullptr));
 }
 
@@ -51,7 +52,8 @@ void GamePlay::Init()
     m_snake.Init(m_context->m_assets->GetTexture(SNAKE));
 
     m_scoreText.setFont(m_context->m_assets->GetFont(MAIN_FONT));
-    m_scoreText.setString("Score : " + std::to_string(m_score));
+    m_scoreText.setString("Score : " + std::to_string(m_context->m_score));
+    m_scoreText.setPosition(0, -2*SCALE);
     m_scoreText.setCharacterSize(15*SCALE);
 }
 
@@ -69,15 +71,19 @@ void GamePlay::ProcessInput()
             sf::Vector2f newDirection = m_snakeDirection;
             switch (event.key.code)
             {
+            case sf::Keyboard::W:
             case sf::Keyboard::Up:
                 newDirection = {0.f, -16.f*SCALE};
                 break;
+            case sf::Keyboard::S:
             case sf::Keyboard::Down:
                 newDirection = {0.f, 16.f*SCALE};
                 break;
+            case sf::Keyboard::A:
             case sf::Keyboard::Left:
                 newDirection = {-16.f*SCALE, 0.f};
                 break;
+            case sf::Keyboard::D:
             case sf::Keyboard::Right:
                 newDirection = {16.f*SCALE, 0.f};
                 break;
@@ -99,47 +105,49 @@ void GamePlay::ProcessInput()
 
 void GamePlay::Update(sf::Time deltaTime)
 {
-    m_elapsedTime += deltaTime;
-
-    if(m_elapsedTime.asSeconds() > 0.1)
+    if(!m_isPaused)
     {
-        for(auto& wall : m_walls)
+        m_elapsedTime += deltaTime;
+
+        if(m_elapsedTime.asSeconds() > 0.1)
         {
-            if(m_snake.IsOn(wall))
+            for(auto& wall : m_walls)
+            {
+                if(m_snake.IsOn(wall))
+                {
+                    m_context->m_states->Add(std::make_unique<GameOver>(m_context), true);
+                    break;
+                }
+            }
+
+            if(m_snake.IsOn(m_food))
+            {
+                m_snake.Grow(m_snakeDirection);
+
+                int x = 0, y = 0;
+                int grid_columns = WIDTH/(16*SCALE) - 2;
+                int grid_rows = HEIGHT/(16*SCALE) - 2;
+                x = (rand() % grid_columns)*16*SCALE + 16*SCALE;
+                y = (rand() % grid_rows)*16*SCALE + 16*SCALE;
+
+                m_food.setPosition(x, y);
+                m_context->m_score += 1;
+                m_scoreText.setString("Score: " + std::to_string(m_context->m_score));
+            }
+            else
+            {
+                m_snake.Move(m_snakeDirection);
+            }
+
+            if(m_snake.IsSelfIntersecting())
             {
                 m_context->m_states->Add(std::make_unique<GameOver>(m_context), true);
-                break;
             }
+
+            m_isNewDirectionProcessing = false;
+            m_elapsedTime = sf::Time::Zero;
         }
-
-        if(m_snake.IsOn(m_food))
-        {
-            m_snake.Grow(m_snakeDirection);
-
-            int x = 0, y = 0;
-            int grid_columns = WIDTH/(16*SCALE) - 2;
-            int grid_rows = HEIGHT/(16*SCALE) - 2;
-            x = (rand() % grid_columns)*16*SCALE + 16*SCALE;
-            y = (rand() % grid_rows)*16*SCALE + 16*SCALE;
-
-            m_food.setPosition(x, y);
-            m_score += 1;
-            m_scoreText.setString("Score: " + std::to_string(m_score));
-        }
-        else
-        {
-            m_snake.Move(m_snakeDirection);
-        }
-
-        if(m_snake.IsSelfIntersecting())
-        {
-            m_context->m_states->Add(std::make_unique<GameOver>(m_context), true);
-        }
-
-        m_isNewDirectionProcessing = false;
-        m_elapsedTime = sf::Time::Zero;
     }
-    
 }
 
 void GamePlay::Draw()
@@ -161,10 +169,10 @@ void GamePlay::Draw()
 
 void GamePlay::Pause()
 {
-
+    m_isPaused = true;
 }
 
 void GamePlay::Start()
 {
-
+    m_isPaused = false;
 }

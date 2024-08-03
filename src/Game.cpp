@@ -1,11 +1,9 @@
-#include <SFML/Graphics/CircleShape.hpp>
-
 #include "Game.hpp"
 #include "MainMenu.hpp"
 
 Game::Game() : m_context(std::make_shared<Context>())
 {
-    m_context->m_window->create(sf::VideoMode(WIDTH, HEIGHT), "Snake Game");
+    m_context->m_window->create(sf::VideoMode(WIDTH, HEIGHT), "Snake Game", sf::Style::Close);
     m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
 }
 
@@ -18,6 +16,8 @@ void Game::Run()
 {
     sf::Clock clock;
     sf::Time timeSinceLastFrame = sf::Time::Zero;
+
+    m_context->m_assets->AddFont(MAIN_FONT, "assets/fonts/Silkscreen-Regular.ttf");
 
     while (m_context->m_window->isOpen())
     {
