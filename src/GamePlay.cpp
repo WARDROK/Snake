@@ -130,8 +130,13 @@ void GamePlay::Update(sf::Time deltaTime)
         {
             m_snake.Move(m_snakeDirection);
         }
-        m_isNewDirectionProcessing = false;
 
+        if(m_snake.IsSelfIntersecting())
+        {
+            m_context->m_states->Add(std::make_unique<GameOver>(m_context), true);
+        }
+
+        m_isNewDirectionProcessing = false;
         m_elapsedTime = sf::Time::Zero;
     }
     
