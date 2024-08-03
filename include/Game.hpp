@@ -7,9 +7,9 @@
 #include "AssetMan.hpp"
 #include "StateMan.hpp"
 
-const int scale = 2;
-const int WIDTH = 640*scale;
-const int HEIGHT = 360*scale;
+const int SCALE = 3;
+const int WIDTH = 352*SCALE;
+const int HEIGHT = 352*SCALE;
 
 enum AssetID
 {

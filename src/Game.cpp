@@ -16,9 +16,6 @@ Game::~Game()
 
 void Game::Run()
 {
-    sf::CircleShape shape(200.f);
-    shape.setFillColor(sf::Color::Green);
-
     sf::Clock clock;
     sf::Time timeSinceLastFrame = sf::Time::Zero;
 

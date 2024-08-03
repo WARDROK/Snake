@@ -22,29 +22,29 @@ void MainMenu::Init()
     // Title
     m_gameTitle.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_gameTitle.setString("Snake Game");
-    m_gameTitle.setCharacterSize(60*scale);
+    m_gameTitle.setCharacterSize(60*SCALE);
     m_gameTitle.setOrigin(m_gameTitle.getLocalBounds().width / 2,
                           m_gameTitle.getLocalBounds().height / 2);
     m_gameTitle.setPosition(m_context->m_window->getSize().x / 2,
-                            m_context->m_window->getSize().y / 2 - 125.f*scale);
+                            m_context->m_window->getSize().y / 2 - 125.f*SCALE);
 
     // Play Button
     m_playButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_playButton.setString("Play");
-    m_playButton.setCharacterSize(30*scale);
+    m_playButton.setCharacterSize(30*SCALE);
     m_playButton.setOrigin(m_playButton.getLocalBounds().width / 2,
                           m_playButton.getLocalBounds().height / 2);
     m_playButton.setPosition(m_context->m_window->getSize().x / 2,
-                            m_context->m_window->getSize().y / 2 - 0.f*scale);
+                            m_context->m_window->getSize().y / 2 - 0.f*SCALE);
 
     // Exit Button
     m_exitButton.setFont(m_context->m_assets->GetFont(MAIN_FONT));
     m_exitButton.setString("Exit");
-    m_exitButton.setCharacterSize(30*scale);
+    m_exitButton.setCharacterSize(30*SCALE);
     m_exitButton.setOrigin(m_exitButton.getLocalBounds().width / 2,
                           m_exitButton.getLocalBounds().height / 2);
     m_exitButton.setPosition(m_context->m_window->getSize().x / 2,
-                            m_context->m_window->getSize().y / 2 + 75.f*scale);
+                            m_context->m_window->getSize().y / 2 + 75.f*SCALE);
 }
 
 void MainMenu::ProcessInput()
