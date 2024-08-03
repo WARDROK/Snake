@@ -1,10 +1,16 @@
 #include "Game.hpp"
 #include "MainMenu.hpp"
 
+#include <iostream>
+
 Game::Game() : m_context(std::make_shared<Context>())
 {
     m_context->m_window->create(sf::VideoMode(WIDTH, HEIGHT), "Snake Game", sf::Style::Close);
     m_context->m_states->Add(std::make_unique<MainMenu>(m_context));
+
+    sf::Image icon;
+    icon.loadFromFile("assets/snake.png");
+    m_context->m_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 Game::~Game()
