@@ -101,8 +101,7 @@ void GamePlay::Update(sf::Time deltaTime)
         {
             if(m_snake.IsOn(wall))
             {
-                // Todo
-                // Go to GameOver State
+                m_context->m_states->Add(std::make_unique<GameOver>(m_context), true);
                 break;
             }
         }
@@ -112,12 +111,6 @@ void GamePlay::Update(sf::Time deltaTime)
             m_snake.Grow(m_snakeDirection);
 
             int x = 0, y = 0;
-
-            //x = rand() % WIDTH;
-            //y = rand() % HEIGHT;
-
-            // x = std::clamp<int>(rand() % WIDTH, 16*SCALE, WIDTH - 2*16*SCALE);
-            // y = std::clamp<int>(rand() % HEIGHT, 16*SCALE, HEIGHT - 2*16*SCALE);
             int grid_columns = WIDTH/(16*SCALE) - 2;
             int grid_rows = HEIGHT/(16*SCALE) - 2;
             x = (rand() % grid_columns)*16*SCALE + 16*SCALE;

@@ -11,7 +11,14 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 file(GLOB SOURCES
-    src/*.cpp
+    src/AssetMan.cpp
+    src/Game.cpp
+    src/GameOver.cpp
+    src/GamePlay.cpp
+    src/main.cpp
+    src/MainMenu.cpp
+    src/Snake.cpp
+    src/StateMan.cpp
 )
 
 add_executable(main ${SOURCES})

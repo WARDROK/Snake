@@ -8,6 +8,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "Snake.hpp"
+#include "GameOver.hpp"
 
 class GamePlay : public Engine::State
 {
