@@ -10,12 +10,8 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-set(SOURCES
-    src/main.cpp
-    src/StateMan.cpp
-    src/AssetMan.cpp
-    src/Game.cpp
-    src/MainMenu.cpp
+file(GLOB SOURCES
+    src/*cpp
 )
 
 add_executable(main ${SOURCES})

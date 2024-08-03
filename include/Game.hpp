@@ -7,12 +7,18 @@
 #include "AssetMan.hpp"
 #include "StateMan.hpp"
 
+const int scale = 2;
+const int WIDTH = 640*scale;
+const int HEIGHT = 360*scale;
+
 enum AssetID
 {
-    MAIN_FONT = 0
+    MAIN_FONT = 0,
+    GRASS,
+    FOOD,
+    WALL,
+    SNAKE
 };
-
-static int scale = 3;
 
 struct Context
 {
