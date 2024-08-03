@@ -23,7 +23,7 @@ set(SOURCES
 )
 
 if(WIN32)
-    set(RESOURCES ${PROJECT_SOURCE_DIR}/assets/resources.rc)
+    set(RESOURCES ${PROJECT_SOURCE_DIR}/src/resources.rc)
 endif()
 
 add_executable(main ${SOURCES} ${RESOURCES})
