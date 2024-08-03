@@ -80,8 +80,9 @@ void GamePlay::ProcessInput()
                 break;
             }
 
-            if(!(m_snakeDirection.x == -newDirection.x && m_snakeDirection.y == -newDirection.y))
+            if(!m_isNewDirectionProcessing && !(m_snakeDirection.x == -newDirection.x && m_snakeDirection.y == -newDirection.y))
             {
+                m_isNewDirectionProcessing = true;
                 m_snakeDirection = newDirection;
             }
         }
@@ -117,9 +118,10 @@ void GamePlay::Update(sf::Time deltaTime)
 
             // x = std::clamp<int>(rand() % WIDTH, 16*SCALE, WIDTH - 2*16*SCALE);
             // y = std::clamp<int>(rand() % HEIGHT, 16*SCALE, HEIGHT - 2*16*SCALE);
-
-            x = (rand() % 38)*16*SCALE + 16*SCALE;
-            y = (rand() % 20)*16*SCALE + 16*SCALE;
+            int grid_columns = WIDTH/(16*SCALE) - 2;
+            int grid_rows = HEIGHT/(16*SCALE) - 2;
+            x = (rand() % grid_columns)*16*SCALE + 16*SCALE;
+            y = (rand() % grid_rows)*16*SCALE + 16*SCALE;
 
             m_food.setPosition(x, y);
         }
@@ -127,6 +129,7 @@ void GamePlay::Update(sf::Time deltaTime)
         {
             m_snake.Move(m_snakeDirection);
         }
+        m_isNewDirectionProcessing = false;
 
         m_elapsedTime = sf::Time::Zero;
     }

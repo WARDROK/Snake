@@ -20,6 +20,7 @@ private:
 
     sf::Vector2f m_snakeDirection;
     sf::Time m_elapsedTime;
+    bool m_isNewDirectionProcessing = false;
 
 public:
     GamePlay(std::shared_ptr<Context>& context);
